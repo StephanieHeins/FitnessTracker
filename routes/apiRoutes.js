@@ -1,9 +1,9 @@
 const router = require("express").Router();
-const Workout = require("../models");
+const db = require("../models");
 
 // Submit new workout
 router.post("/api/workouts", (req, res) => {
-    Workout.create({})
+    db.Workout.create({})
       .then(dbWorkout => {
         res.json(dbWorkout);
       }).catch(err => {
@@ -41,7 +41,18 @@ router.post("/api/workouts", (req, res) => {
     .catch(err => {
         res.status(400).json(err);
     });
-})
+  });
 
+  // Delete by ID
+  router.delete("/api/workouts", ({ body }, res) => {
+    db.Workout.findByIdAndDelete(body.id)
+      .then(() => {
+        res.json(true);
+      })
+      .catch(err => {
+        res.json(err);
+      });
+  });
 
+  module.exports = router;
 
