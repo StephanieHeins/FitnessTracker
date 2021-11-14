@@ -33,7 +33,7 @@ router.post("/api/workouts", (req, res) => {
   });
 
   // Info for Workouts Page
-  app.get("/api/workouts", (req, res) => {
+  router.get("/api/workouts", (req, res) => {
     db.Workout.find({})
     .then(dbWorkout => {
         res.json(dbWorkout);
