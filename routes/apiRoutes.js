@@ -6,9 +6,8 @@ router.post("/api/workouts", (req, res) => {
     Workout.create({})
       .then(dbWorkout => {
         res.json(dbWorkout);
-      })
-      .catch(err => {
-        res.json(err);
+      }).catch(err => {
+        res.status(400).json(err);
       });
   });
 
@@ -21,4 +20,18 @@ router.post("/api/workouts", (req, res) => {
     }).catch(err => {
       res.status(400).json(err);
     });
-});
+  });
+
+  // Pull info for Range page 
+  router.get("/api/workouts/range", ({}, res) => {
+    db.Workout.find({})
+    .then((dbWorkout) => {
+      res.json(dbWorkout);
+    }).catch(err => {
+      res.status(400).json(err);
+    });
+  });
+
+
+
+
