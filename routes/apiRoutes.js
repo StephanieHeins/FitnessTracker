@@ -24,7 +24,7 @@ router.post("/api/workouts", (req, res) => {
 
   // Pull info for Range page 
   router.get("/api/workouts/range", ({}, res) => {
-    db.Workout.find({})
+    db.Workout.find({}).limit(7)
     .then((dbWorkout) => {
       res.json(dbWorkout);
     }).catch(err => {
@@ -43,6 +43,7 @@ router.post("/api/workouts", (req, res) => {
     });
   });
 
+  /*
   // Delete by ID
   router.delete("/api/workouts", ({ body }, res) => {
     db.Workout.findByIdAndDelete(body.id)
@@ -53,6 +54,7 @@ router.post("/api/workouts", (req, res) => {
         res.json(err);
       });
   });
+  */
 
   module.exports = router;
 
